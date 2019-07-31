@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace VotacionUCAWebApplication.Controllers
 {
-    public class HomeController : Controller
+    public class InicioController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Acceso()
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult Gestion()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult Votaciones()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
