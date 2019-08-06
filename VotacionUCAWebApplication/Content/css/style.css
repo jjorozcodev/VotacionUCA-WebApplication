@@ -1,0 +1,22 @@
+﻿nav {
+    background: #ffffff;
+}
+
+#header-wrap {
+    margin-bottom: 100px;
+}
+
+.bg-blue {
+    background: #5B8AA2;
+    color: white;
+}
+
+#CerrarSesion:hover {
+    color: #C93636 !important;
+}
+
+#mifooter {
+    background-color: #5B8AA2;
+    padding: 20px 0 10px;
+    color: #fff;
+}

@@ -3,8 +3,38 @@
     ViewBag.Title = "Gestion";
 }
 
-<h2>Gestion</h2>
-
-<a href="@Url.Action("Crear","Votaciones")" class="btn btn-success">Nueva votación</a>
-<p>Lista de votaciones creadas por el administrador</p>
-<a href="@Url.Action("Editar","Votaciones")" class="btn btn-success">Editar votación</a>
+<h2>Listado de Votaciones </h2>
+<a href="../Votaciones/Crear" class="btn btn-success m-3">Nueva votación</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre Votación</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Votos</th>
+            <th scope="col">Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Elección Representante Sección</td>
+            <td>Habilitado</td>
+            <td>3</td>
+            <td>
+                <a href="../Votaciones/Editar/1" class="btn btn-primary"><i class="lni-pencil"></i></a>
+                <a href="#" class="btn btn-danger"><i class="lni-trash"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Elección Representante Carrera</td>
+            <td>Deshabilitado</td>
+            <td>0</td>
+            <td>
+                <a href="../Votaciones/Editar/2" class="btn btn-primary"><i class="lni-pencil"></i></a>
+                <a href="#" class="btn btn-danger"><i class="lni-trash"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>

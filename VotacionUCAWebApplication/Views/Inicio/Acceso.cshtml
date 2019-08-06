@@ -1,7 +1,61 @@
 ﻿
 @{
-    ViewBag.Title = "Acceso";
+    Layout = null;
 }
 
-<h2>Acceso</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Acceso</title>
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/line-icons.css" rel="stylesheet" />
+    <link href="~/Content/css/slicknav.css" rel="stylesheet" />
+    <link href="~/Content/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section class="login section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-12 col-xs-12">
+                    <div class="login-form login-area">
+                        <h3>
+                            VOTACIÓN UCA
+                        </h3>
+                        <form role="form" class="login-form">
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-user"></i>
+                                    <input type="text" id="Usuario" class="form-control" name="email" placeholder="Usuario">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-icon">
+                                    <i class="lni-lock"></i>
+                                    <input type="password" id="Clave" class="form-control" placeholder="Contraseña">
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="TipoEstudiante">
+                                    <label class="custom-control-label" for="TipoEstudiante">Soy Estudiante</label>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="../Inicio/Gestion" class="btn btn-common log-btn">Ingresar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
