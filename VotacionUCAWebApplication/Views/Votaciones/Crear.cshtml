@@ -3,145 +3,124 @@
     ViewBag.Title = "Crear";
 }
 <div class="col-lg-12">
-    <h2>Crear </h2>
+    <h2>CREAR</h2>
 </div>
 
-<form>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputEmail4">Nombre Votación</label>
-            <input type="text" class="form-control" >
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputPassword4">Código de Grupo</label>
-            <input type="number" class="form-control">
-        </div>
-        
-        <div class="col-auto">
-            <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                <label class="form-check-label" for="autoSizingCheck">
-                     Abierta
-                </label>
-            </div>
-        </div>
-    </div>
-</form>
-
-<section class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="heading">
-                    <h1 class="section-title">Seleccionar candidatos</h1>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-md-15 col-xs-13 thead menu-bg">
+        <div class="login-form login-area">
+            <form role="form" class="login-form">
+                <div class="col-12 text-center">
+                    <div class="heading">
+                        <h6 class="section-title" >Ingresar datos</h6>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg1">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
-                            </div>
-                            <h4>Joselin Hernandez</h4>
-                            <p class="categories-listing">23 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
-                        </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="lni-add-files"></i>
+                        <input type="text" id="Nombre" class="form-control" name="email" placeholder="Nombre Votación">
                     </div>
-            </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="lni-code"></i>
+                        <input type="number" id="Codigo" class="form-control" placeholder="Código de Grupo">
+                    </div>
+                </div>
+                <div style="display:inline-block;">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <label style=" padding-top: 8px; padding-left: 5px;">Abierta</label>
+                </div>
+                <section class="section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="heading">
+                                    <h6 class="section-title">Seleccionar candidatos</h6>
+                                </div>
+                            </div>
 
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg2">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
+                            <div class="col-lg-3 col-md-4 col-xs-13">
+                                <div class="category-icon-item lis-bg1">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <i class="lni-user"></i>
+                                        </div>
+                                        <h4>Joselin Hernandez</h4>
+                                        <p class="categories-listing">Cod. Grupo: 101</p>
+                                        <p class="categories-listing">Carnet: 57060118</p>
+                                            <label class="btn btn-default">
+                                                <input type="checkbox" autocomplete="off">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </label>
+                                    </div>
+                                </div>
                             </div>
-                            <h4>Monica Gonzalez</h4>
-                            <p class="categories-listing">21 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
+                            <div class="col-lg-3 col-md-4 col-xs-13">
+                                <div class="category-icon-item lis-bg7">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <i class="lni-user"></i>
+                                        </div>
+                                        <h4>Eduardo Castillo</h4>
+                                        <p class="categories-listing">Cod. Grupo: 101</p>
+                                        <p class="categories-listing">Carnet: 57060118</p>
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" autocomplete="off">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-xs-13">
+                                <div class="category-icon-item lis-bg8">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <i class="lni-user"></i>
+                                        </div>
+                                        <h4>Fernando Perez</h4>
+                                        <p class="categories-listing">Cod. Grupo: 123</p>
+                                        <p class="categories-listing">Carnet: 57060118</p>
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" autocomplete="off">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-4 col-xs-13">
+                                <div class="category-icon-item lis-bg12">
+                                    <div class="icon-box">
+                                        <div class="icon">
+                                            <i class="lni-user"></i>
+                                        </div>
+                                        <h4>Isaac Gonzalez</h4>
+                                        <p class="categories-listing">Cod. Grupo: 101</p>
+                                        <p class="categories-listing">Carnet: 57060118</p>
+                                        <label class="btn btn-default">
+                                            <input type="checkbox" autocomplete="off">
+                                            <span class="glyphicon glyphicon-ok"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <a href="../Inicio/Gestion" class="btn btn-danger m-3 float-right">Cancelar</a>
+                                <a href="../Inicio/Gestion" class="btn btn-success m-3 float-right">Crear</a>
+                            </div>
+
                         </div>
                     </div>
-                </a>
-            </div>
-            
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg6">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
-                            </div>
-                            <h4>Luis Hernandez</h4>
-                            <p class="categories-listing">19 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
-                        </div>
-                    </div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg7">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
-                            </div>
-                            <h4>Eduardo Castillo</h4>
-                            <p class="categories-listing">17 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
-                        </div>
-                    </div>
-            </div>
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg8">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
-                            </div>
-                            <h4>Fernando Perez</h4>
-                            <p class="categories-listing">18 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
-                        </div>
-                    </div>
-            </div>
-           
-            <div class="col-lg-2 col-md-3 col-xs-12">
-                    <div class="category-icon-item lis-bg12">
-                        <div class="icon-box">
-                            <div class="icon">
-                                <i class="lni-user"></i>
-                            </div>
-                            <h4>Isaac Gonzalez</h4>
-                            <p class="categories-listing">18 años</p>
-                            <p class="categories-listing">Carnet: 57060118</p>
-                            <label class="btn btn-default">
-                                <input type="checkbox" autocomplete="off">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label>
-                        </div>
-                    </div>
-            </div>
-            <div  class="col-12 text-center">
-                <a href="../Inicio/Gestion" class="btn btn-success m-3">Crear</a>
-                <a href="../Inicio/Gestion" class="btn btn-danger m-3">Cancelar</a>
-            </div>
-            
+                </section>
+            </form>
         </div>
     </div>
-</section>
+</div>
 
+<div class="toggler">
+    <h4>  </h4>
+</div>
