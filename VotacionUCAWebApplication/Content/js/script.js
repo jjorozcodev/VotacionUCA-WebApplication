@@ -19,13 +19,28 @@
 }
 
 function Acceso() {
-    var Usuario = $('#Usuario').val();
-    var Clave = $('#Clave').val();
-    var TipoUsuario = $('#TipoUsuario').val();
-    
-    debugger;
+    var usuario = $('#Usuario').val();
+    var clave = $('#Clave').val();
+    var tipousuario = $('#TipoUsuario').is(":checked");
 
-    $.post('/ajax/acceso', Usuario).done(function () {
-        location.href = '/inicio/votaciones';
-    }).fail();
+    var data = { Usuario: usuario, TipoUsuario: tipousuario };
+
+    // POST usando AJAX y JQuery
+    $.post('/ajax/acceso', data).done(function (resp) {
+        if (resp) {
+            if (tipousuario) {
+                location.href = '/inicio/votaciones';
+            }
+            else
+                location.href = '/inicio/gestion';
+        }
+    });
+}
+
+function UsuarioActual() {
+
+    // GET usando AJAX y JQuery
+    $.get('/ajax/obtenerusuarioactual', function (data) {
+        $('#usuarioActual').html('' + data);
+    });
 }

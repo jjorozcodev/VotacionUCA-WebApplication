@@ -35,7 +35,7 @@
                     </div>
                     <div class="collapse navbar-collapse float-right" id="main-navbar">
                         <div class="header-top-right float-right">
-                            <span><i class="lni-user"></i> Admin</span> |
+                            <span><i class="lni-user"></i><span id="usuarioActual" style="margin-left: 10px">Hola!</span></span> |
                             <a href="../Inicio/Acceso" class="bg-blue " id="CerrarSesion"><i class="lni-exit"></i> Cerrar Sesión</a> 
                         </div>
                     </div>
@@ -81,7 +81,11 @@
     <script src="~/Content/js/sweetalert2.min.js"></script>
     <script src="~/Content/js/script.js"></script>
 
-
+    <script>
+        $(document).ready(function () {
+            UsuarioActual();
+        });
+    </script>
 </body>
 
 </html>

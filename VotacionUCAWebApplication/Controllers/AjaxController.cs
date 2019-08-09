@@ -44,9 +44,20 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void Acceso(string Usuario)
+        public bool Acceso(string Usuario, bool TipoUsuario)
         {
-             Session["usuarioActual"] = Usuario.ToLower();
+            bool valido = false;
+
+            if (TipoUsuario)
+            {
+                Session["usuarioActual"] = "Est.: " + Usuario.ToLower();
+            }
+            else
+            {
+                Session["usuarioActual"] = "Admin.: " + Usuario.ToLower();
+            }
+            valido = true;
+            return valido;
         }
 
         [HttpPost]
