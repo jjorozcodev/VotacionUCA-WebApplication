@@ -5,6 +5,40 @@
 
 <h2>Votaciones</h2>
 
-<div>
-    <a href="@Url.Action("Candidatos","Votaciones")" class="btn btn-primary">Entrar en votación activa</a>
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-md-15 col-xs-13 thead menu-bg">
+        <div class="login-form login-area">
+            <form role="form" class="login-form">
+                <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card border-info mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Elección Representante Sección</h5>
+                                        <p class="card-text">Código de Grupo: 2565</p>
+                                        <p class="card-text">Estado: Abierto</p>
+                                    </div>
+                                    <a href="../Votaciones/Votar" class="btn btn-success btn-block float-right">Votar</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card border-info mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Elección Representante Carrera</h5>
+                                        <p class="card-text">Código de Grupo: 2565</p>
+                                        <p class="card-text">Estado: Cerrado</p>
+                                    </div>
+                                    <a href="../Votaciones/Votar" class="btn btn-success btn-block float-right">Votar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="toggler">
+    <h4>  </h4>
 </div>

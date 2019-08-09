@@ -70,29 +70,32 @@
                 ¿Estás seguro que deseas eliminar "Elección Representante Sección"?
             </div>
             <div class="modal-footer">
-                <a href="Inicio/Gestion"  class="btn btn-danger" data-dismiss="modal">Borrar</a>
-                <a href="Inicio/Gestion" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
+                @*<a data-target="#delete" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default" class="btn-sm btn-danger">Borrar</a>*@
+                <a href="../Inicio/Gestion"  class="btn btn-danger">Borrar</a>
+                <a href="../Inicio/Gestion" class="btn btn-secondary">Cancelar</a>
             </div>
         </div>
     </div>
 </div>
 
 
-@*<div class="modal fade" id="borrarModal" tabindex="-1" role="dialog" aria-labelledby="modalBorrar" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalDelete">¡La operación fue completada con éxito!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Borrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-footer">
-                <a href="Inicio/Gestion" class="btn btn-secondary" data-dismiss="modal">Cerrar</a>
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="modalBorrar" aria-hidden="true">
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDelete">¡La operación fue completada con éxito!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Borrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <a href="Inicio/Gestion" class="btn btn-secondary" data-dismiss="modal">Cerrar</a>
+                </div>
             </div>
         </div>
     </div>
-</div>*@
+    </div>
 
 <div class="toggler">
     <h4>  </h4>
@@ -100,15 +103,17 @@
 
 <script>
     function PopupConfirmacion() {
-        $('#myModal').modal({ backdrop: 'static', keyboard: false }, 'show');
+        $('#deleteModal').modal({ backdrop: 'static', keyboard: false }, 'show');
     }
 
     function PopupNotificacion() {
         $('#delete').modal({ backdrop: 'static', keyboard: false }, 'show');
     }
 
+
+
     $('#closemodal').click(function () {
-        $('#mymodal').modal('hide');
+        $('#deleteModal').modal('hide');
 
     });
 
