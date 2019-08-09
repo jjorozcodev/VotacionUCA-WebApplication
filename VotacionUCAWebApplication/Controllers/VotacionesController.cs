@@ -32,7 +32,7 @@ namespace VotacionUCAWebApplication.Controllers
             return View();
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Votar()
         {
             return View();
