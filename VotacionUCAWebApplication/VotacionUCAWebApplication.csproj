@@ -166,6 +166,7 @@
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\slicknav.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\sweetalert2.min.css" />
     <Content Include="Content\img\logo-psd.png" />
     <Content Include="Content\img\Logo-vot.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
@@ -174,6 +175,7 @@
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
     <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\sweetalert2.min.js" />
     <Content Include="Content\js\wow.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

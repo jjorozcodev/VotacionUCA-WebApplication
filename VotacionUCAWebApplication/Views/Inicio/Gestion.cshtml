@@ -33,7 +33,7 @@
                                 <td>
                                     <a href="../Votaciones/Candidatos/1" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>
                                     <a href="../Votaciones/Editar/1" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>
-                                    <a data-target="#deleteModal" data-toggle="modal"  data-placement="top" runat="server" CssClass="btn btn-default" class="btn-sm btn-danger"><i class="lni-trash" style="color:white"></i></a>
+                                    <a href="#" onclick="Advertencia()" class="btn-sm btn-danger"><i class="lni-trash"></i></a>
                                 </td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                                 <td>
                                     <a href="../Votaciones/Visualizar/2" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>
                                     <a href="../Votaciones/Editar/2" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>
-                                    <a href="#" class="btn-sm btn-danger"><i class="lni-trash"></i></a>
+                                    <a href="#"  onclick="Advertencia()" class="btn-sm btn-danger"><i class="lni-trash"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -57,74 +57,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalDelete" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalDelete" style="color: red">¡Atención!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Borrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro que deseas eliminar "Elección Representante Sección"?
-            </div>
-            <div class="modal-footer">
-                @*<a data-target="#delete" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default" class="btn-sm btn-danger">Borrar</a>*@
-                <a href="../Inicio/Gestion"  class="btn btn-danger">Borrar</a>
-                <a href="../Inicio/Gestion" class="btn btn-secondary">Cancelar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="modalBorrar" aria-hidden="true">
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalDelete">¡La operación fue completada con éxito!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Borrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <a href="Inicio/Gestion" class="btn btn-secondary" data-dismiss="modal">Cerrar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
 <div class="toggler">
     <h4>  </h4>
 </div>
-
-<script>
-    function PopupConfirmacion() {
-        $('#deleteModal').modal({ backdrop: 'static', keyboard: false }, 'show');
-    }
-
-    function PopupNotificacion() {
-        $('#delete').modal({ backdrop: 'static', keyboard: false }, 'show');
-    }
-
-
-
-    $('#closemodal').click(function () {
-        $('#deleteModal').modal('hide');
-
-    });
-
-    $(document).ready(function () {
-        $('#dataTables-datos').DataTable({
-            responsive: true
-        });
-    });
-</script>
-
-
-
-
-

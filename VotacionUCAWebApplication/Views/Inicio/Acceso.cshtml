@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <div class="input-icon">
                                     <i class="lni-user"></i>
-                                    <input type="text" id="Usuario" class="form-control" name="email" placeholder="Usuario">
+                                    <input type="number" id="Usuario" class="form-control" placeholder="Usuario">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -44,12 +44,14 @@
                             </div>
                             <div class="form-group mb-3">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="TipoEstudiante">
-                                    <label class="custom-control-label" for="TipoEstudiante">Soy Estudiante</label>
+                                    <input type="checkbox" class="custom-control-input" id="TipoUsuario">
+                                    <label class="custom-control-label" for="TipoUsuario">Soy Estudiante</label>
                                 </div>
                             </div>
                             <div class="text-center">
+                                @*<button id="btnIngresar" class="btn btn-common log-btn">Ingresar</button>*@
                                 <a href="../Inicio/Gestion" class="btn btn-common log-btn">Ingresar</a>
+                                <a href="../Inicio/Votaciones" class="btn btn-common log-btn">Ingreso Estudiantes</a>
                             </div>
                         </form>
                     </div>
@@ -57,5 +59,16 @@
             </div>
         </div>
     </section>
+
+
+    <script src="/Content/js/jquery-min.js"></script>
+    <script src="~/Content/js/script.js"></script>
+
+    <script>
+            $('#btnIngresar').click(function () {
+                Acceso();
+            });
+    </script>
+
 </body>
 </html>

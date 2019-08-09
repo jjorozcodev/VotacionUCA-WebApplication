@@ -23,8 +23,7 @@
                             </div>
 
                             <div class="col-lg-3 col-md-4 col-xs-13">
-                                <a data-target="#votarModal" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default">
-                                <div class="category-icon-item lis-bg1">
+                               <div onclick="VotoRealizado()" class="category-icon-item lis-bg1">
                                     <div class="icon-box">
                                         <div class="icon">
                                             <i class="lni-user"></i>
@@ -34,12 +33,10 @@
                                         <p class="categories-listing">Carnet: 57060118</p>
                                     </div>
                                 </div>
-                                </a>
                             </div>
 
                             <div class="col-lg-3 col-md-4 col-xs-13">
-                                <a data-target="#votarModal" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default">
-                                    <div class="category-icon-item lis-bg1">
+                                    <div onclick="VotoRealizado()"  class="category-icon-item lis-bg1">
                                         <div class="icon-box">
                                             <div class="icon">
                                                 <i class="lni-user"></i>
@@ -49,11 +46,9 @@
                                             <p class="categories-listing">Carnet: 57060118</p>
                                         </div>
                                     </div>
-                                    </a>
                                 </div>
 
                             <div class="col-lg-3 col-md-4 col-xs-13">
-                                <a data-target="#votarModal" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default">
                                         <div class="category-icon-item lis-bg8">
                                             <div class="icon-box">
                                                 <div class="icon">
@@ -64,11 +59,9 @@
                                                 <p class="categories-listing">Carnet: 57060118</p>
                                             </div>
                                         </div>
-                                    </a>
                             </div>
 
                             <div class="col-lg-3 col-md-4 col-xs-13">
-                                <a data-target="#votarModal" data-toggle="modal" data-placement="top" runat="server" CssClass="btn btn-default">
                                     <div class="category-icon-item lis-bg12">
                                         <div class="icon-box">
                                             <div class="icon">
@@ -79,7 +72,6 @@
                                             <p class="categories-listing">Carnet: 57060118</p>
                                         </div>
                                     </div>
-                                </a>
                                 </div>
                         </div>
                     </div>
@@ -89,22 +81,14 @@
     </div>
 </div>
 
-<div class="modal fade" id="votarModal" tabindex="-1" role="dialog" aria-labelledby="modalVotar" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalVotar" style="color: red">¡Enhorabuena!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Borrar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-               Gracias por votar
-            </div>
-            <div class="modal-footer">
-                <a href="../Inicio/Votaciones" class="btn btn-danger">Cerrar</a>
-            </div>
-        </div>
-    </div>
-</div>
-
+<script>
+        function VotoRealizado(){
+            Swal.fire({
+            type: 'success',
+            title: '¡Voto Realizado!',
+            text: 'Gracias por tu fe ciega en alguien que luego ni se va acordar de vos.'
+            }).then((result) => {
+                    location.href = '/inicio/votaciones';
+            })
+        }
+</script>
