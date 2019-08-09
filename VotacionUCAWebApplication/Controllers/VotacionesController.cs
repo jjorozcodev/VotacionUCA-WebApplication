@@ -8,21 +8,12 @@ namespace VotacionUCAWebApplication.Controllers
 {
     public class VotacionesController : Controller
     {
-        public void Listar()
-        {
-            RedirectToAction("Votaciones", "Inicio");
-        }
         public ActionResult Crear()
         {
             return View();
         }
-        public ActionResult Editar()
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public ActionResult Borrar()
+        public ActionResult Editar()
         {
             return View();
         }
@@ -31,9 +22,13 @@ namespace VotacionUCAWebApplication.Controllers
         {
             return View();
         }
-
-        [HttpPost]
+        
         public ActionResult Votar()
+        {
+            return View();
+        }
+
+        public ActionResult Resultados()
         {
             return View();
         }

@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AjaxController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\VotacionesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -151,6 +153,7 @@
     </Compile>
     <Compile Include="Models\ClienteWeb.cs" />
     <Compile Include="Models\Estudiantes.cs" />
+    <Compile Include="Models\Votaciones.cs" />
     <Compile Include="Models\Votos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -196,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ajax\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -208,6 +212,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\LineIcons0ad2.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Votaciones\Votar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Votaciones\Resultados.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
