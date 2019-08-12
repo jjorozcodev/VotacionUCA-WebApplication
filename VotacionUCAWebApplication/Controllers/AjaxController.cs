@@ -151,9 +151,17 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void AbrirCerrarVotacion()
+        public async Task AbrirCerrarVotacionAsync(int id)
         {
-            //return Json("Correcto", JsonRequestBehavior.AllowGet);
+            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
+            foreach(Votaciones v in votaciones)
+            {
+                if(v.Id == id)
+                {
+                    v.Abierto = !v.Abierto;
+                    break;
+                }
+            }
         }
 
         [HttpPost]

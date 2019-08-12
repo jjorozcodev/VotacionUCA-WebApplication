@@ -13,9 +13,9 @@
                 'Eliminado!',
                 'El registro se eliminó con éxito',
                 'success'
-            )
+            );
         }
-    })
+    });
 }
 
 function Avisar(texto){
@@ -26,7 +26,7 @@ function Acceso() {
     var usuario = $('#Usuario').val();
     var clave = $('#Clave').val();
     var tipousuario = $('#TipoUsuario').is(":checked");
-    debugger;
+
     if (usuario === '' || clave === '') {
         Avisar("Complete todos los campos.");
     }
@@ -34,7 +34,7 @@ function Acceso() {
         var data = { Usuario: usuario, Clave: clave, TipoUsuario: tipousuario };
         // POST usando AJAX y JQuery
         $.post('/ajax/acceso', data).done(function (resp) {
-            debugger;
+
             if (resp !== '') {
                 if (resp.Gestiona) {
                     location.href = '/inicio/gestion';
@@ -71,7 +71,7 @@ function ListarVotaciones() {
 
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarVotaciones').done(function (resp) {
-        debugger;
+
         $.each(resp, function () {
 
             var estado = "";
@@ -89,7 +89,7 @@ function ListarVotaciones() {
                 + '<td>' + this.CodGrupo + '</td>'
                 + '<td>' + estado + '</td>'
                 + '<td>'
-                + '<a href= "../Votaciones/Candidatos/' + this.Id + '" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>'
+                + '<a href= "../Votaciones/Candidatos/?v=' + this.Id + '" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>'
                 + '<a href="../Votaciones/Editar/' + this.Id + '" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>'
                 + '<a href="#" onclick="Advertencia()" class="btn-sm btn-danger"><i class="lni-trash"></i></a>'
                 + '</td>'
@@ -153,9 +153,9 @@ function ListarVotacionesDisponibles() {
 }
 
 function ListarCandidatosVotacion() {
-    var urlenlace = location.href;
-    var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
-    debugger;
+    var urlenlace = new URL(location.href);
+    var idVotacion = urlenlace.searchParams.get("v");
+
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
         $.each(resp, function () {
