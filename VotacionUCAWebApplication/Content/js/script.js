@@ -57,6 +57,16 @@ function UsuarioActual() {
     });
 }
 
+function NombreVotacionActual() {
+    var urlenlace = location.href;
+    var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
+    // GET usando AJAX y JQuery
+    $.get('/ajax/obtenernombrevotacion/' + idVotacion, function (resp) {
+        debugger;
+        $('#nombreEleccion').html('Candidatos - ' + resp);
+    });
+}
+
 function ListarVotaciones() {
 
     // GET usando AJAX y JQuery
@@ -126,7 +136,7 @@ function ListarVotacionesDisponibles() {
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarVotaciones').done(function (resp) {
         $.each(resp, function () {
-
+            debugger;
             $("#tablaVotacionesDisp").append(
                 '<div class="col-sm-6">'
                 +'<div class="card border-info mb-3">'
@@ -134,7 +144,7 @@ function ListarVotacionesDisponibles() {
                 + '<h5 class="card-title">' + this.Descripcion + '</h5>'
                 + '<p class="card-text">Código de Grupo:' + this.CodGrupo + '</p>'
                 +'</div>'
-                +'<a href="../Votaciones/Votar" class="btn btn-success btn-block float-right">Votar</a>'
+                +'<a href="../Votaciones/Votar/' + this.Id + '" class="btn btn-success btn-block float-right">Votar</a>'
                 +'</div>'
                 +'</div>'
             );
@@ -156,6 +166,26 @@ function ListarCandidatosVotacion() {
                 +'<td>'+ this.NombreCandidato +'</td>'
                 +'<td>'+ this.VotosObtenidos +'</td>'
                 +'</tr>'
+            );
+
+        });
+    }).fail();
+}
+
+function ListarCandidatosVotacion() {
+    var urlenlace = location.href;
+    var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
+    debugger;
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
+        $.each(resp, function () {
+
+            $("#tablaCandidatosVotacion").append(
+                '<tr>'
+                + '<td>' + this.Id + '</td>'
+                + '<td>' + this.NombreCandidato + '</td>'
+                + '<td>' + this.VotosObtenidos + '</td>'
+                + '</tr>'
             );
 
         });
