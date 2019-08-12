@@ -72,6 +72,24 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpGet]
+        public async Task<JsonResult> ObtenerNombreVotacion(int id)
+        {
+            string nombrevotacion = "";
+            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
+
+            foreach (Votaciones v in votaciones)
+            {
+                if (v.Id == id)
+                {
+                    nombrevotacion = v.Descripcion;
+                    break;
+                }
+            }
+
+            return Json(nombrevotacion, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public async Task<JsonResult> ListarEstudiantes()
         {
             List<Estudiantes> estudiantes = await ClienteWeb.ListarEstudiantes();
