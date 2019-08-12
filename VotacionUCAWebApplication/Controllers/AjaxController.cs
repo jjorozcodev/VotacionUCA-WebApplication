@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using VotacionUCAWebApplication.Models;
@@ -35,10 +36,12 @@ namespace VotacionUCAWebApplication.Controllers
                     if (est != null && TipoUsuario)
                     {
                         Session["usuarioActual"] = est.NombreCompleto;
+                        Session["grupoUActual"] = est.CodGrupo;
                     }
                     else if (est == null && !TipoUsuario)
                     {
                         Session["usuarioActual"] = objU.Usuario;
+                        Session["grupoUActual"] = est.CodGrupo;
                     }
                     else
                     {
@@ -107,7 +110,18 @@ namespace VotacionUCAWebApplication.Controllers
         public async Task<JsonResult> ListarVotacionesDisponibles()
         {
             List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
-            return Json(votaciones, JsonRequestBehavior.AllowGet);
+            List<Votaciones> filtrado = new List<Votaciones>();
+            string grupo = Session["grupoUActual"].ToString();
+
+            foreach (Votaciones v in votaciones)
+            {
+                if(v.CodGrupo == grupo)
+                {
+                    filtrado.Add(v);
+                }
+            }
+
+            return Json(filtrado, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
