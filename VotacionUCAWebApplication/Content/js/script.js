@@ -172,22 +172,34 @@ function ListarCandidatosVotacion() {
     }).fail();
 }
 
-function ListarCandidatosVotacion() {
+function CandidatosVotacionDisponibles() {
     var urlenlace = location.href;
     var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
     debugger;
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
-        $.each(resp, function () {
+        var contador = 1;
 
-            $("#tablaCandidatosVotacion").append(
-                '<tr>'
-                + '<td>' + this.Id + '</td>'
-                + '<td>' + this.NombreCandidato + '</td>'
-                + '<td>' + this.VotosObtenidos + '</td>'
-                + '</tr>'
+        $.each(resp, function () {
+            if (contador > 12) {
+                contador = 1;
+            }
+
+            $("#datosTablaCandidatos").append(
+                '<div class="col-lg-3 col-md-4 col-xs-13">'
+                +'<div onclick="VotoRealizado()" class="category-icon-item lis-bg' + contador + '">'
+                +'<div class="icon-box">'
+                +'<div class="icon">'
+                +'<i class="lni-user"></i>'
+                + '</div>'
+                + '<h4>' + this.NombreCandidato + '</h4>'
+                +'</div>'
+                +'</div>'
+                +'</div>'
             );
+
+            contador = contador + 1;
 
         });
     }).fail();
-}
+    }
