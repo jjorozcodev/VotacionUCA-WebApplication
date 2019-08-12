@@ -6,7 +6,7 @@
         cancelButtonText: 'Cancelar',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, eliminar!'
+        confirmButtonText: 'Sí, eliminar!'
     }).then((result) => {
         if (result.value) {
             Swal.fire(
@@ -18,38 +18,51 @@
     })
 }
 
+function Avisar(texto){
+    Swal.fire(texto);
+}
+
 function Acceso() {
     var usuario = $('#Usuario').val();
     var clave = $('#Clave').val();
     var tipousuario = $('#TipoUsuario').is(":checked");
-
-    var data = { Usuario: usuario, TipoUsuario: tipousuario };
-    // POST usando AJAX y JQuery
-    $.post('/ajax/acceso', data).done(function (resp) {
-        if (resp) {
-            if (tipousuario) {
-                location.href = '/inicio/votaciones';
+    debugger;
+    if (usuario === '' || clave === '') {
+        Avisar("Complete todos los campos.");
+    }
+    else {
+        var data = { Usuario: usuario, Clave: clave, TipoUsuario: tipousuario };
+        // POST usando AJAX y JQuery
+        $.post('/ajax/acceso', data).done(function (resp) {
+            debugger;
+            if (resp !== '') {
+                if (resp.Gestiona) {
+                    location.href = '/inicio/gestion';
+                }
+                else
+                    location.href = '/inicio/votaciones';
             }
-            else
-                location.href = '/inicio/gestion';
-        }
-    });
+            else {
+                Avisar("¡Usuario o Contraseña incorrectos!");
+            }
+        });
+    }
 }
 
 function UsuarioActual() {
 
     // GET usando AJAX y JQuery
-    $.get('/ajax/obtenerusuarioactual', function (data) {
-        $('#usuarioActual').html('' + data);
+    $.get('/ajax/obtenerusuarioactual', function (resp) {
+        $('#usuarioActual').html('' + resp);
     });
 }
 
 function ListarVotaciones() {
 
     // GET usando AJAX y JQuery
-    $.get('/Ajax/ListarVotaciones').done(function (data) {
+    $.get('/Ajax/ListarVotaciones').done(function (resp) {
         debugger;
-        $.each(data, function () {
+        $.each(resp, function () {
 
             var estado = "";
             if (this.Abierto === true) {
@@ -80,10 +93,10 @@ function ListarVotaciones() {
 function ListarEstudiantes() {
 
     // GET usando AJAX y JQuery
-    $.get('/Ajax/ListarEstudiantes').done(function (data) {
+    $.get('/Ajax/ListarEstudiantes').done(function (resp) {
         var contador = 1;
 
-        $.each(data, function () {
+        $.each(resp, function () {
             if (contador > 12) {
                 contador = 1;
             }
@@ -111,8 +124,8 @@ function ListarEstudiantes() {
 function ListarVotacionesDisponibles() {
 
     // GET usando AJAX y JQuery
-    $.get('/Ajax/ListarVotaciones').done(function (data) {
-        $.each(data, function () {
+    $.get('/Ajax/ListarVotaciones').done(function (resp) {
+        $.each(resp, function () {
 
             $("#tablaVotacionesDisp").append(
                 '<div class="col-sm-6">'
@@ -125,6 +138,26 @@ function ListarVotacionesDisponibles() {
                 +'</div>'
                 +'</div>'
             );
+        });
+    }).fail();
+}
+
+function ListarCandidatosVotacion() {
+    var urlenlace = location.href;
+    var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
+    debugger;
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
+        $.each(resp, function () {
+
+            $("#tablaCandidatosVotacion").append(
+                '<tr>'
+                +'<td>'+ this.Id +'</td>'
+                +'<td>'+ this.NombreCandidato +'</td>'
+                +'<td>'+ this.VotosObtenidos +'</td>'
+                +'</tr>'
+            );
+
         });
     }).fail();
 }
