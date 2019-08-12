@@ -11,7 +11,12 @@ namespace VotacionUCAWebApplication.Controllers
         [HttpGet]
         public JsonResult ObtenerUsuarioActual()
         {
-            string usuarioActual = Session["usuarioActual"].ToString();
+            string usuarioActual = "";
+            if (Session["usuarioActual"] != null)
+            {
+                usuarioActual = Session["usuarioActual"].ToString();
+            }
+            
             return Json(usuarioActual, JsonRequestBehavior.AllowGet);
         }
 

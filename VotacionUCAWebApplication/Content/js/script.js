@@ -77,3 +77,54 @@ function ListarVotaciones() {
     }).fail();
 }
 
+function ListarEstudiantes() {
+
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarEstudiantes').done(function (data) {
+        var contador = 1;
+
+        $.each(data, function () {
+            if (contador > 12) {
+                contador = 1;
+            }
+
+            $("#datosTablaE").append(
+                '<div class="col-lg-3 col-md-4 col-xs-13">'
+                + '<div class="category-icon-item lis-bg' + contador + '">'
+                + '<div class="icon-box">'
+                + '<i class="lni-user"></i>'
+                + '<h4>' + this.NombreCompleto + '</h4>'
+                + '<p class="categories-listing">Carnet:' + this.NumCarnet + '</p>'
+                + '<label class="btn btn-default">'
+                + '<input type="checkbox" autocomplete="off"><span class="glyphicon glyphicon-ok"></span>'
+                + '</label>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+            );
+
+            contador = contador + 1;
+        });
+    }).fail();
+}
+
+function ListarVotacionesDisponibles() {
+
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarVotaciones').done(function (data) {
+        $.each(data, function () {
+
+            $("#tablaVotacionesDisp").append(
+                '<div class="col-sm-6">'
+                +'<div class="card border-info mb-3">'
+                +'<div class="card-body">'
+                + '<h5 class="card-title">' + this.Descripcion + '</h5>'
+                + '<p class="card-text">Código de Grupo:' + this.CodGrupo + '</p>'
+                +'</div>'
+                +'<a href="../Votaciones/Votar" class="btn btn-success btn-block float-right">Votar</a>'
+                +'</div>'
+                +'</div>'
+            );
+        });
+    }).fail();
+}
