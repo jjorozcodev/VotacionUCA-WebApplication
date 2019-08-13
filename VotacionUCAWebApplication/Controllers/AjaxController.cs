@@ -41,6 +41,7 @@ namespace VotacionUCAWebApplication.Controllers
                     {
                         Session["usuarioActual"] = est.NombreCompleto;
                         Session["grupoUActual"] = est.CodGrupo;
+                        Session["idEstudiante"] = est.Id;
                     }
                     else if (est == null && !TipoUsuario)
                     {
@@ -117,9 +118,16 @@ namespace VotacionUCAWebApplication.Controllers
                 if(v.CodGrupo == grupo)
                 {
                     filtrado.Add(v);
+                    foreach (Votos vts in votos)
+                    {
+                        if (vts.IdEstudiante.ToString() == Session["idEstudiante"].ToString() && vts.IdVotacion == v.Id)
+                        {
+                            filtrado.Remove(v);
+                        }
+                    }
                 }
             }
-
+            
             return Json(filtrado, JsonRequestBehavior.AllowGet);
         }
 
@@ -254,10 +262,10 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void Votar(int IdVotacion, int IdCandidato, int IdEstudiante)
+        public void Votar(int IdVotacion, int IdCandidato)
         {
             Votos voto = new Votos();
-            voto.IdEstudiante = IdEstudiante;
+            voto.IdEstudiante = Convert.ToInt32(Session["idEstudiante"]);
             voto.IdVotacion = IdVotacion;
 
             Candidatos candidatoSeleccionado = null;

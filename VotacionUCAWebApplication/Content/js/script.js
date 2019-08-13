@@ -132,7 +132,7 @@ function ListarEstudiantes() {
 function ListarVotacionesDisponibles() {
 
     // GET usando AJAX y JQuery
-    $.get('/Ajax/ListarVotaciones').done(function (resp) {
+    $.get('/Ajax/ListarVotacionesDisponibles').done(function (resp) {
         $.each(resp, function () {
             $("#tablaVotacionesDisp").append(
                 '<div class="col-sm-6">'
@@ -183,7 +183,7 @@ function CandidatosVotacionDisponibles() {
 
             $("#datosTablaCandidatos").append(
                 '<div class="col-lg-3 col-md-4 col-xs-13">'
-                +'<div onclick="VotoRealizado()" class="category-icon-item lis-bg' + contador + '">'
+                +'<div onclick="Votar('+ this.Id +', '+ idVotacion +')" class="category-icon-item lis-bg' + contador + '">'
                 +'<div class="icon-box">'
                 +'<div class="icon">'
                 +'<i class="lni-user"></i>'
@@ -222,4 +222,22 @@ function CrearVotacion() {
             location.href ='../Inicio/Gestion';
         });
     }
+}
+
+function Votar(idCandidato, idVotacion) {
+    var data = { IdCandidato: idCandidato, IdVotacion: idVotacion };
+    // POST usando AJAX y JQuery
+    $.post('/ajax/votar', data).done(function (resp) {
+        VotoRealizado();
+    });
+}
+
+function VotoRealizado() {
+    Swal.fire({
+        type: 'success',
+        title: '¡Voto Realizado!',
+        text: 'Gracias por participar en la votación.'
+    }).then((result) => {
+        location.href = '/inicio/votaciones';
+    });
 }

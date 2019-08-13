@@ -28,23 +28,13 @@
     </div>
 </div>
 
-<script>
-        function VotoRealizado(){
-            Swal.fire({
-            type: 'success',
-            title: '¡Voto Realizado!',
-            text: 'Gracias por tu fe ciega en alguien que luego ni se va acordar de vos.'
-            }).then((result) => {
-                    location.href = '/inicio/votaciones';
-            })
-        }
-</script>
-
 @section scripts{
 <script>
         $(document).ready(function () {
             NombreVotacionActual();
             CandidatosVotacionDisponibles();
         });
+
+        
 </script>
 }
