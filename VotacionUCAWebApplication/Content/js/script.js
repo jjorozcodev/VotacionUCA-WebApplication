@@ -36,6 +36,7 @@ function Acceso() {
         $.post('/ajax/acceso', data).done(function (resp) {
 
             if (resp !== '') {
+                alert(resp);
                 if (resp.Gestiona) {
                     location.href = '/inicio/gestion';
                 }

@@ -169,8 +169,10 @@
     <Content Include="Content\css\slicknav.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\sweetalert2.min.css" />
+    <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\logo-psd.png" />
     <Content Include="Content\img\Logo-vot.jpg" />
+    <Content Include="Content\img\Logo-vot.png" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-min.js" />
     <Content Include="Content\js\jquery.slicknav.js" />
