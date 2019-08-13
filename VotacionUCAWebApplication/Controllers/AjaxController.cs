@@ -41,7 +41,6 @@ namespace VotacionUCAWebApplication.Controllers
                     else if (est == null && !TipoUsuario)
                     {
                         Session["usuarioActual"] = objU.Usuario;
-                        Session["grupoUActual"] = est.CodGrupo;
                     }
                     else
                     {
@@ -153,8 +152,10 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void CrearVotacion()
+        public void CrearVotacion(string Descripcion, string CodGrupo, bool Abierto)
         {
+            Votaciones nuevaVotacion = new Votaciones();
+            nuevaVotacion.Abierto = Abierto; 
             //return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 

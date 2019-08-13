@@ -34,7 +34,6 @@ function Acceso() {
         var data = { Usuario: usuario, Clave: clave, TipoUsuario: tipousuario };
         // POST usando AJAX y JQuery
         $.post('/ajax/acceso', data).done(function (resp) {
-
             if (resp !== '') {
                 if (resp.Gestiona) {
                     location.href = '/inicio/gestion';
@@ -62,7 +61,6 @@ function NombreVotacionActual() {
     var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
     // GET usando AJAX y JQuery
     $.get('/ajax/obtenernombrevotacion/' + idVotacion, function (resp) {
-        debugger;
         $('#nombreEleccion').html('Candidatos - ' + resp);
     });
 }
@@ -203,3 +201,20 @@ function CandidatosVotacionDisponibles() {
         });
     }).fail();
     }
+
+function CrearVotacion() {
+    var descripcion = $('#Nombre').val();
+    var codigo = $('#Codigo').val();
+    var abierta = $('#Abierta').is(":checked");
+
+    if (usuario === '' || codigo === '') {
+        Avisar("Complete todos los campos.");
+    }
+    else {
+        var data = { Descripcion : descripcion, CodGrupo: codigo, Abierto: abierta };
+        // POST usando AJAX y JQuery
+        $.post('/ajax/acceso', data).done(function (resp) {
+            alert(resp);
+        });
+    }
+}
