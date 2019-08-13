@@ -149,7 +149,7 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public JsonResult CrearVotacion(string Descripcion, string CodGrupo, bool Abierto)
+        public async Task<JsonResult> CrearVotacion(string Descripcion, string CodGrupo, bool Abierto, List<int> Seleccion)
         {
             Votaciones nuevaVotacion = new Votaciones();
 
@@ -158,6 +158,23 @@ namespace VotacionUCAWebApplication.Controllers
             nuevaVotacion.CodGrupo = CodGrupo;
 
             bool resp = ClienteWeb.CrearVotacion(nuevaVotacion);
+
+            if (resp)
+            {
+                votaciones = await ClienteWeb.ListarVotaciones();
+                int idVot = votaciones[votaciones.Count - 1].Id;
+
+                foreach(int i in Seleccion)
+                {
+                    Candidatos c = new Candidatos();
+                    c.IdEstudiante = i;
+                    c.IdVotacion = idVot;
+                    c.VotosObtenidos = 0;
+
+                    ClienteWeb.CrearCandidato(c);
+                }
+            }
+
             return Json(resp, JsonRequestBehavior.AllowGet);
         }
 

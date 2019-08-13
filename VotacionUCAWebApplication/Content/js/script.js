@@ -117,7 +117,7 @@ function ListarEstudiantes() {
                 + '<h4>' + this.NombreCompleto + '</h4>'
                 + '<p class="categories-listing">Carnet:' + this.NumCarnet + '</p>'
                 + '<label class="btn btn-default">'
-                + '<input type="checkbox" autocomplete="off"><span class="glyphicon glyphicon-ok"></span>'
+                + '<input data-idE="' + this.Id + '" type="checkbox" autocomplete="off"><span class="glyphicon glyphicon-ok"></span>'
                 + '</label>'
                 + '</div>'
                 + '</div>'
@@ -209,11 +209,17 @@ function CrearVotacion() {
         Avisar("Complete todos los campos.");
     }
     else {
-        var data = { Descripcion: descripcion, CodGrupo: codigo, Abierto: abierta };
-        debugger;
+        var arreglo = new Array();
+        $("#datosTablaE input").each(function () {
+            if ($(this).is(":checked")) {
+                arreglo.push($(this).attr('data-idE'));
+            }
+        });
+
+        var data = { Descripcion: descripcion, CodGrupo: codigo, Abierto: abierta, Seleccion: arreglo };
         // POST usando AJAX y JQuery
         $.post('/ajax/crearvotacion', data).done(function (resp) {
-            alert(resp);
+            location.href ='../Inicio/Gestion';
         });
     }
 }
