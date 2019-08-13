@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Configuration;
+using System.Web.Mvc;
 
 namespace VotacionUCAWebApplication.Models
 {
     public class ClienteWeb
     {
-        private static readonly string urlBWA = WebConfigurationManager.AppSettings["urlBaseWebApi"];
+        public static readonly string urlBWA = WebConfigurationManager.AppSettings["urlBaseWebApi"];
 
         public static async Task<List<Usuarios>> ListarUsuarios()
         {
@@ -66,6 +67,18 @@ namespace VotacionUCAWebApplication.Models
             }
 
             return votaciones;
+        }
+        
+        public static bool CrearVotacion(Votaciones votacion)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var postTask = cliente.PostAsJsonAsync<Votaciones>("api/votaciones", votacion);
+                postTask.Wait();
+                var result = postTask.Result;
+                return result.IsSuccessStatusCode;
+             }
         }
 
         public static async Task<List<Candidatos>> ListarCandidatos()

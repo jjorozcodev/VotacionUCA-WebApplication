@@ -8,16 +8,17 @@ namespace VotacionUCAWebApplication.Controllers
 {
     public class AjaxController : Controller
     {
-        [HttpPost]
-        public async Task<JsonResult> Acceso(string Usuario, string Clave, bool TipoUsuario)
-        {
-            Usuarios objU = null;
+        private List<Usuarios> usuarios = Task.Run(() => ClienteWeb.ListarUsuarios()).Result;
+        private List<Estudiantes> estudiantes = Task.Run(() => ClienteWeb.ListarEstudiantes()).Result;
+        private List<Votaciones> votaciones = Task.Run(() => ClienteWeb.ListarVotaciones()).Result;
+        private List<Candidatos> candidatos = Task.Run(() => ClienteWeb.ListarCandidatos()).Result;
 
-            List<Usuarios> listaUsuarios = await ClienteWeb.ListarUsuarios();
-            List<Estudiantes> listaEstudiantes = await ClienteWeb.ListarEstudiantes();
+        [HttpPost]
+        public JsonResult Acceso(string Usuario, string Clave, bool TipoUsuario)
+        {
             Estudiantes est = null;
 
-            foreach (Estudiantes e in listaEstudiantes)
+            foreach (Estudiantes e in estudiantes)
             {
                 if (e.NumCarnet == Usuario)
                 {
@@ -26,7 +27,9 @@ namespace VotacionUCAWebApplication.Controllers
                 }
             }
 
-            foreach (Usuarios u in listaUsuarios)
+            Usuarios objU = null;
+
+            foreach (Usuarios u in usuarios)
             {
                 if(u.Usuario.ToLower() == Usuario.ToLower() && u.Clave == Clave)
                 {
@@ -74,10 +77,9 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> ObtenerNombreVotacion(int id)
+        public JsonResult ObtenerNombreVotacion(int id)
         {
             string nombrevotacion = "";
-            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
 
             foreach (Votaciones v in votaciones)
             {
@@ -92,23 +94,20 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> ListarEstudiantes()
+        public JsonResult ListarEstudiantes()
         {
-            List<Estudiantes> estudiantes = await ClienteWeb.ListarEstudiantes();
             return Json(estudiantes, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public async Task<JsonResult> ListarVotaciones()
+        public JsonResult ListarVotaciones()
         {
-            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
             return Json(votaciones, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public async Task<JsonResult> ListarVotacionesDisponibles()
+        public JsonResult ListarVotacionesDisponibles()
         {
-            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
             List<Votaciones> filtrado = new List<Votaciones>();
             string grupo = Session["grupoUActual"].ToString();
 
@@ -124,11 +123,8 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> ListarCandidatosVotacion(int id)
+        public JsonResult ListarCandidatosVotacion(int id)
         {
-            List<Candidatos> candidatos = await ClienteWeb.ListarCandidatos();
-            List<Estudiantes> estudiantes = await ClienteWeb.ListarEstudiantes();
-
             List<Candidatos> candidatosFiltrados = new List<Candidatos>();
 
             foreach (Candidatos c in candidatos)
@@ -152,11 +148,16 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void CrearVotacion(string Descripcion, string CodGrupo, bool Abierto)
+        public JsonResult CrearVotacion(string Descripcion, string CodGrupo, bool Abierto)
         {
             Votaciones nuevaVotacion = new Votaciones();
-            nuevaVotacion.Abierto = Abierto; 
-            //return Json("Correcto", JsonRequestBehavior.AllowGet);
+
+            nuevaVotacion.Abierto = Abierto;
+            nuevaVotacion.Descripcion = Descripcion;
+            nuevaVotacion.CodGrupo = CodGrupo;
+
+            bool resp = ClienteWeb.CrearVotacion(nuevaVotacion);
+            return Json(resp, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -166,9 +167,8 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task AbrirCerrarVotacionAsync(int id)
+        public void AbrirCerrarVotacion(int id)
         {
-            List<Votaciones> votaciones = await ClienteWeb.ListarVotaciones();
             foreach(Votaciones v in votaciones)
             {
                 if(v.Id == id)
@@ -180,7 +180,7 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void BorrarVotacion()
+        public void BorrarVotacion(int id)
         {
             //return Json("Correcto", JsonRequestBehavior.AllowGet);
         }

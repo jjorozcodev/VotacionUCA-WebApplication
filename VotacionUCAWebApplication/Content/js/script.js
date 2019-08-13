@@ -35,7 +35,6 @@ function Acceso() {
         // POST usando AJAX y JQuery
         $.post('/ajax/acceso', data).done(function (resp) {
             if (resp !== '') {
-                alert(resp);
                 if (resp.Gestiona) {
                     location.href = '/inicio/gestion';
                 }
@@ -135,7 +134,6 @@ function ListarVotacionesDisponibles() {
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarVotaciones').done(function (resp) {
         $.each(resp, function () {
-            debugger;
             $("#tablaVotacionesDisp").append(
                 '<div class="col-sm-6">'
                 +'<div class="card border-info mb-3">'
@@ -174,7 +172,6 @@ function ListarCandidatosVotacion() {
 function CandidatosVotacionDisponibles() {
     var urlenlace = location.href;
     var idVotacion = urlenlace.substring(urlenlace.length - 1, urlenlace.length);
-    debugger;
     // GET usando AJAX y JQuery
     $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
         var contador = 1;
@@ -208,13 +205,14 @@ function CrearVotacion() {
     var codigo = $('#Codigo').val();
     var abierta = $('#Abierta').is(":checked");
 
-    if (usuario === '' || codigo === '') {
+    if (descripcion === '' || codigo === '') {
         Avisar("Complete todos los campos.");
     }
     else {
-        var data = { Descripcion : descripcion, CodGrupo: codigo, Abierto: abierta };
+        var data = { Descripcion: descripcion, CodGrupo: codigo, Abierto: abierta };
+        debugger;
         // POST usando AJAX y JQuery
-        $.post('/ajax/acceso', data).done(function (resp) {
+        $.post('/ajax/crearvotacion', data).done(function (resp) {
             alert(resp);
         });
     }
