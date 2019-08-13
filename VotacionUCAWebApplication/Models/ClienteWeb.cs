@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Configuration;
-using System.Web.Mvc;
 
 namespace VotacionUCAWebApplication.Models
 {
@@ -81,6 +80,30 @@ namespace VotacionUCAWebApplication.Models
              }
         }
 
+        public static bool EditarVotacion(Votaciones votacion)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var putTask = cliente.PutAsJsonAsync($"api/votaciones/{votacion.Id}", votacion);
+                putTask.Wait();
+                var result = putTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+
+        public static bool EliminarVotacion(int id)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var deleteTask = cliente.DeleteAsync($"api/votaciones/{id}");
+                deleteTask.Wait();
+                var result = deleteTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+
         public static async Task<List<Candidatos>> ListarCandidatos()
         {
             List<Candidatos> candidatos = new List<Candidatos>();
@@ -111,7 +134,31 @@ namespace VotacionUCAWebApplication.Models
                 return result.IsSuccessStatusCode;
             }
         }
-        
+
+        public static bool EditarCandidato(Candidatos candidato)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var putTask = cliente.PutAsJsonAsync($"api/candidatos/{candidato.Id}", candidato);
+                putTask.Wait();
+                var result = putTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+
+        public static bool EliminarCandidato(int id)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var deleteTask = cliente.DeleteAsync($"api/candidatos/{id}");
+                deleteTask.Wait();
+                var result = deleteTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+
         public static async Task<List<Votos>> ListarVotos()
         {
             List<Votos> votos = new List<Votos>();
@@ -139,6 +186,18 @@ namespace VotacionUCAWebApplication.Models
                 var postTask = cliente.PostAsJsonAsync<Votos>("api/votos", voto);
                 postTask.Wait();
                 var result = postTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+
+        public static bool EliminarVoto(int id)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var deleteTask = cliente.DeleteAsync($"api/votos/{id}");
+                deleteTask.Wait();
+                var result = deleteTask.Result;
                 return result.IsSuccessStatusCode;
             }
         }

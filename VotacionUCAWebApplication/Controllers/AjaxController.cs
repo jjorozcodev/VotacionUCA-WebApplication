@@ -173,15 +173,49 @@ namespace VotacionUCAWebApplication.Controllers
 
                     ClienteWeb.CrearCandidato(c);
                 }
+                candidatos = await ClienteWeb.ListarCandidatos();
             }
 
             return Json(resp, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public void EditarVotacion()
+        public async Task<JsonResult> EditarVotacion(int Id, string Descripcion, string CodGrupo, bool Abierto, List<int> Seleccion)
         {
-            //return Json("Correcto", JsonRequestBehavior.AllowGet);
+            Votaciones votacionEditada = new Votaciones();
+
+            votacionEditada.Id = Id;
+            votacionEditada.Descripcion = Descripcion;
+            votacionEditada.CodGrupo = CodGrupo;
+            votacionEditada.Abierto = Abierto;
+
+            bool resp = ClienteWeb.EditarVotacion(votacionEditada);
+
+            if (resp)
+            {
+                votaciones = await ClienteWeb.ListarVotaciones();
+
+                foreach(Candidatos c in candidatos)
+                {
+                    if(c.IdVotacion == Id)
+                    {
+                        ClienteWeb.EliminarCandidato(c.Id);
+                    }
+                }
+
+                foreach (int i in Seleccion)
+                {
+                    Candidatos c = new Candidatos();
+                    c.IdEstudiante = i;
+                    c.IdVotacion = Id;
+                    c.VotosObtenidos = 0;
+
+                    ClienteWeb.CrearCandidato(c);
+                }
+                candidatos = await ClienteWeb.ListarCandidatos();
+            }
+
+            return Json(resp, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -198,15 +232,50 @@ namespace VotacionUCAWebApplication.Controllers
         }
 
         [HttpPost]
-        public void BorrarVotacion(int id)
+        public void BorrarVotacion(int IdVotacion)
         {
-            //return Json("Correcto", JsonRequestBehavior.AllowGet);
+            foreach (Votaciones v in votaciones)
+            {
+                if (v.Id == IdVotacion)
+                {
+                    if (ClienteWeb.EliminarVotacion(IdVotacion))
+                    {
+                        foreach (Candidatos c in candidatos)
+                        {
+                            if (c.IdVotacion == IdVotacion)
+                            {
+                                ClienteWeb.EliminarCandidato(c.Id);
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
         [HttpPost]
-        public void Votar()
+        public void Votar(int IdVotacion, int IdCandidato, int IdEstudiante)
         {
-            //return Json("Correcto", JsonRequestBehavior.AllowGet);
+            Votos voto = new Votos();
+            voto.IdEstudiante = IdEstudiante;
+            voto.IdVotacion = IdVotacion;
+
+            Candidatos candidatoSeleccionado = null;
+            foreach(Candidatos c in candidatos)
+            {
+                if(c.Id == IdCandidato)
+                {
+                    candidatoSeleccionado = c;
+                    break;
+                }
+            }
+
+            candidatoSeleccionado.VotosObtenidos++;
+
+            if (ClienteWeb.EditarCandidato(candidatoSeleccionado))
+            {
+                ClienteWeb.CrearVoto(voto);
+            }
         }
     }
 }
