@@ -99,5 +99,48 @@ namespace VotacionUCAWebApplication.Models
 
             return candidatos;
         }
+
+        public static bool CrearCandidato(Candidatos candidato)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var postTask = cliente.PostAsJsonAsync<Candidatos>("api/candidatos", candidato);
+                postTask.Wait();
+                var result = postTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
+        
+        public static async Task<List<Votos>> ListarVotos()
+        {
+            List<Votos> votos = new List<Votos>();
+
+            HttpClient _clienteHTTP = new HttpClient();
+            _clienteHTTP.BaseAddress = new Uri(urlBWA);
+            _clienteHTTP.DefaultRequestHeaders.Clear();
+            _clienteHTTP.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage res = await _clienteHTTP.GetAsync("api/votos");
+            if (res.IsSuccessStatusCode)
+            {
+                var listRes = res.Content.ReadAsStringAsync().Result;
+                votos = JsonConvert.DeserializeObject<List<Votos>>(listRes);
+            }
+
+            return votos;
+        }
+
+        public static bool CrearVoto(Votos voto)
+        {
+            using (var cliente = new HttpClient())
+            {
+                cliente.BaseAddress = new Uri(urlBWA);
+                var postTask = cliente.PostAsJsonAsync<Votos>("api/votos", voto);
+                postTask.Wait();
+                var result = postTask.Result;
+                return result.IsSuccessStatusCode;
+            }
+        }
     }
 }

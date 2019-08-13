@@ -12,7 +12,8 @@ namespace VotacionUCAWebApplication.Controllers
         private List<Estudiantes> estudiantes = Task.Run(() => ClienteWeb.ListarEstudiantes()).Result;
         private List<Votaciones> votaciones = Task.Run(() => ClienteWeb.ListarVotaciones()).Result;
         private List<Candidatos> candidatos = Task.Run(() => ClienteWeb.ListarCandidatos()).Result;
-
+        private List<Votos> votos = Task.Run(() => ClienteWeb.ListarVotos()).Result;
+        
         [HttpPost]
         public JsonResult Acceso(string Usuario, string Clave, bool TipoUsuario)
         {
