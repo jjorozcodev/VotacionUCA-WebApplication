@@ -84,7 +84,7 @@ function ListarVotaciones() {
                 + '<td>' + estado + '</td>'
                 + '<td>'
                 + '<a href= "../Votaciones/Candidatos/?v=' + this.Id + '" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>'
-                + '<a href="../Votaciones/Editar/' + this.Id + '" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>'
+                + '<a href="../Votaciones/Editar/?v=' + this.Id + '" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>'
                 + '<a href="#" onclick="Advertencia(' + this.Id + ')" class="btn-sm btn-danger"><i class="lni-trash"></i></a>'
                 + '</td>'
                 + '<tr>'
@@ -220,6 +220,35 @@ function CrearVotacion() {
     }
 }
 
+
+function EditarVotacion() {
+    var urlenlace = new URL(location.href);
+    var idVotacion = urlenlace.searchParams.get("v");
+
+    var descripcion = $('#Nombre').val();
+    var codigo = $('#Codigo').val();
+    var abierta = $('#Abierta').is(":checked");
+
+    if (descripcion === '' || codigo === '') {
+        Avisar("Complete todos los campos.");
+    }
+    else {
+        //Agregar nueva lista de candidatos
+        var arreglo = new Array();
+        $("#datosTablaE input").each(function () {
+            if ($(this).is(":checked")) {
+                arreglo.push($(this).attr('data-idE'));
+            }
+        });
+
+        var data = { Id: idVotacion, Descripcion: descripcion, CodGrupo: codigo, Abierto: abierta, Seleccion: arreglo };
+        //// POST usando AJAX y JQuery
+        $.post('/ajax/editarvotacion', data).done(function (resp) {
+            location.href = '../../Inicio/Gestion';
+        });
+    }
+}
+
 function Votar(idCandidato, idVotacion) {
     var data = { IdCandidato: idCandidato, IdVotacion: idVotacion };
     // POST usando AJAX y JQuery
@@ -248,5 +277,16 @@ function VotoRealizado() {
         text: 'Gracias por participar en la votación.'
     }).then((result) => {
         location.href = '/inicio/votaciones';
+    });
+}
+
+function CargarDatosVotacion() {
+    var urlenlace = new URL(location.href);
+    var idVotacion = urlenlace.searchParams.get("v");
+    // GET usando AJAX y JQuery
+    $.get('/ajax/obtenerdatosvotacion/' + idVotacion, function (resp) {
+        $('#Nombre').val(resp.Descripcion);
+        $('#Codigo').val(resp.CodGrupo);
+        $('#Abierta').prop('checked', resp.Abierto);
     });
 }

@@ -12,24 +12,24 @@
         <div class="login-form login-area">
                 <div class="col-12 text-center">
                     <div class="heading">
-                        <h6 class="section-title">Ingresar datos</h6>
+                        <h6 class="section-title">Editar datos</h6>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-icon">
                         <i class="lni-add-files"></i>
-                        <input type="text" id="Nombre" class="form-control" name="email" placeholder="Nombre Votación" value="Elección Representante Sección">
+                        <input type="text" id="Nombre" class="form-control" placeholder="Nombre Votación" value="">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-icon">
                         <i class="lni-code"></i>
-                        <input type="number" id="Codigo" class="form-control" placeholder="Código de Grupo" value="101">
+                        <input type="number" id="Codigo" class="form-control" placeholder="Código de Grupo" value="">
                     </div>
                 </div>
                 <div style="display:inline-block;">
                     <label class="switch">
-                        <input type="checkbox" checked>
+                        <input id="Abierta" type="checkbox" checked>
                         <span class="slider round" ></span>
                     </label>
                     <label style=" padding-top: 8px; padding-left: 5px;">Abierta</label>
@@ -45,8 +45,8 @@
 
                         </div>
                         <div class="col-12 text-center">
-                            <a href="/Inicio/Gestion" class="btn btn-danger m-3 float-right">Cancelar</a>
-                            <a href="/Inicio/Gestion" class="btn btn-success m-3 float-right">Guardar</a>
+                            <a href="../../Inicio/Gestion" class="btn btn-danger m-3 float-right">Cancelar</a>
+                            <button onclick="EditarVotacion()" class="btn btn-success m-3 float-right">Guardar</button>
                         </div>
                     </div>
                 </section>
@@ -62,6 +62,9 @@
     <script>
         $(document).ready(function () {
             ListarEstudiantes();
+
+            CargarDatosVotacion();
+            CargarSeleccionCandidatos();
         });
     </script>
 }

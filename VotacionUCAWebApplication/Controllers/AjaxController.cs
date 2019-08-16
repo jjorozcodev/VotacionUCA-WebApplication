@@ -285,5 +285,22 @@ namespace VotacionUCAWebApplication.Controllers
                 ClienteWeb.CrearVoto(voto);
             }
         }
+
+        [HttpGet]
+        public JsonResult ObtenerDatosVotacion(int id)
+        {
+            Votaciones vot = null;
+
+            foreach (Votaciones v in votaciones)
+            {
+                if (v.Id == id)
+                {
+                    vot = v;
+                    break;
+                }
+            }
+
+            return Json(vot, JsonRequestBehavior.AllowGet);
+        }
     }
 }
