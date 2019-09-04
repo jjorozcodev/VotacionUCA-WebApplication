@@ -288,5 +288,65 @@ function CargarDatosVotacion() {
         $('#Nombre').val(resp.Descripcion);
         $('#Codigo').val(resp.CodGrupo);
         $('#Abierta').prop('checked', resp.Abierto);
+        
+        ListadoEstudiantesEdicion();
     });
+}
+
+
+function ListadoEstudiantesEdicion() {
+
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarEstudiantes').done(function (resp) {
+        var contador = 1;
+
+        $.each(resp, function () {
+            if (contador > 12) {
+                contador = 1;
+            }
+
+            $("#datosTablaE").append(
+                '<div class="col-lg-3 col-md-4 col-xs-13">'
+                + '<div class="category-icon-item lis-bg' + contador + '">'
+                + '<div class="icon-box">'
+                + '<i class="lni-user"></i>'
+                + '<h4>' + this.NombreCompleto + '</h4>'
+                + '<p class="categories-listing">Carnet:' + this.NumCarnet + '</p>'
+                + '<label class="btn btn-default">'
+                + '<input data-idE="' + this.Id + '" type="checkbox" autocomplete="off">'
+                + '</label>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+            );
+
+            contador = contador + 1;
+        });
+
+        CargarSeleccionCandidatos();
+
+    }).fail();
+}
+
+
+function CargarSeleccionCandidatos() {
+    var urlenlace = new URL(location.href);
+    var idVotacion = urlenlace.searchParams.get("v");
+    // GET usando AJAX y JQuery
+    $.get('/Ajax/ListarCandidatosVotacion/' + idVotacion).done(function (resp) {
+    
+    var inpts = $("#datosTablaE :input");
+        debugger;
+    resp.forEach(function (item) {
+        for (let elem of inpts) {
+            var id = $(elem).attr('data-idE');
+
+            if (id === item.IdEstudiante.toString()) {
+                $(elem).attr('checked', 'checked');
+            }
+        }
+
+        });
+
+    }).fail();
 }
