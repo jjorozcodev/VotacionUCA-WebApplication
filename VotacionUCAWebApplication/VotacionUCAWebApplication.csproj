@@ -174,7 +174,7 @@
     <Content Include="Content\img\Logo-vot.jpg" />
     <Content Include="Content\img\Logo-vot.png" />
     <Content Include="Content\js\bootstrap.min.js" />
-    <Content Include="Content\js\jquery-min.js" />
+    <Content Include="Content\js\jquery-3.4.1.min.js" />
     <Content Include="Content\js\jquery.slicknav.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
@@ -220,9 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Votaciones\Votar.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Votaciones\Resultados.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
