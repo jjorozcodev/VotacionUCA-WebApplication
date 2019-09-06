@@ -83,9 +83,9 @@ function ListarVotaciones() {
                 + '<td>' + this.CodGrupo + '</td>'
                 + '<td>' + estado + '</td>'
                 + '<td>'
-                + '<a href= "../Votaciones/Candidatos/?v=' + this.Id + '" class="btn-sm btn-warning"><i class="lni-eye" style="color:white"></i></a>'
-                + '<a href="../Votaciones/Editar/?v=' + this.Id + '" class="btn-sm btn-primary"><i class="lni-pencil"></i></a>'
-                + '<a href="#" onclick="Advertencia(' + this.Id + ')" class="btn-sm btn-danger"><i class="lni-trash"></i></a>'
+                + '<a href= "../Votaciones/Candidatos/?v=' + this.Id + '" class="btn-sm btn-warning"><i class="lni-eye" title= "Visualizar" style="color:white"></i></a>'
+                + '<a href="../Votaciones/Editar/?v=' + this.Id + '" class="btn-sm btn-primary"><i class="lni-pencil" title= "Editar"></i></a>'
+                + '<a href="#" onclick="Advertencia(' + this.Id + ')" class="btn-sm btn-danger"><i class="lni-trash" title= "Eliminar"></i></a>'
                 + '</td>'
                 + '<tr>'
                 
@@ -261,12 +261,14 @@ function BorrarVotacion(idVotacion) {
     var data = { IdVotacion: idVotacion };
     // POST usando AJAX y JQuery
     $.post('/ajax/borrarvotacion', data).done(function (resp) {
-        Swal.fire(
-            'Eliminado!',
-            'El registro se eliminó con éxito',
-            'success'
-        );
-        location.href = '/inicio/gestion';
+        Swal.fire({
+            type: 'success',
+            title: 'Eliminado!',
+            text: 'El registro se eliminó con éxito.'
+        }).then((resp) => {
+            location.href = '/inicio/gestion';
+        });
+
     });
 }
 
